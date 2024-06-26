@@ -5,6 +5,7 @@ const mongoose = require('mongoose');
 const path = require('path');
 const authRoutes = require('./routes/auth');
 const productRoutes = require('./routes/product');
+const categoryRoutes = require('./routes/category');
 const cors = require('cors')
 
 const app = express();
@@ -25,14 +26,15 @@ const PORT = process.env.PORT || 3000;
 const MONGO_URI = process.env.MONGO_URI;
 
 mongoose.connect(MONGO_URI)
-.then(() => {
-  console.log('Conectado a MongoDB Atlas');
-}).catch((err) => {
-  console.error('Error conectando a MongoDB', err);
-});
+  .then(() => {
+    console.log('Conectado a MongoDB Atlas');
+  }).catch((err) => {
+    console.error('Error conectando a MongoDB', err);
+  });
 
 app.use('/api/auth', authRoutes);
 app.use('/api/product', productRoutes);
+app.use('/api/category', categoryRoutes)
 
 app.get('/', (req, res) => {
   const htmlResponse = `
