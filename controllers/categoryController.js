@@ -5,12 +5,23 @@ exports.create = async (req, res) => {
     // cambie de "categoryName" a "name" porque lanzaba error porque en el Category del Schema definiste que "name" no "categoryName"
     const { name } = req.body;
     try {
+<<<<<<< Updated upstream
         const existingCategory = await Category.findOne({ name: name })
         if (existingCategory) {
             return res.status(400).json({ errorMessage: 'El nombre de la categoria ya existe' });
         }
 
         const newCategory = new Category({ name });
+=======
+        //verificamos si ya existe el nombre de la categoria 
+        const existCategory = await Category.findOne({ name: categoryName })
+        if (existCategory) {
+            return res.status(400).json({ message: 'El nombre de la categoria ya existe' });
+        }
+        //creamos la nueva categoria
+        const newCategory = new Category({ categoryName });
+        //guardamos en la base de datos
+>>>>>>> Stashed changes
         await newCategory.save();
         return res.status(201).json({ message: 'Categoria registrada', status: 201 });
     } catch (err) {
