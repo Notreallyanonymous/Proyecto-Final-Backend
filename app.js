@@ -4,6 +4,7 @@ const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 const path = require('path');
 const authRoutes = require('./routes/auth');
+const productRoutes = require('./routes/product');
 const cors = require('cors')
 
 const app = express();
@@ -21,9 +22,9 @@ app.use(bodyParser.json());
 app.use(express.static(path.join(__dirname, 'views')));
 
 const PORT = process.env.PORT || 3000;
-const MONGO_URI_PROD = process.env.MONGO_URI_PROD;
+const MONGO_URI = process.env.MONGO_URI;
 
-mongoose.connect(MONGO_URI_PROD)
+mongoose.connect(MONGO_URI)
 .then(() => {
   console.log('Conectado a MongoDB Atlas');
 }).catch((err) => {
@@ -31,6 +32,7 @@ mongoose.connect(MONGO_URI_PROD)
 });
 
 app.use('/api/auth', authRoutes);
+app.use('/api/product', productRoutes);
 
 app.get('/', (req, res) => {
   const htmlResponse = `
