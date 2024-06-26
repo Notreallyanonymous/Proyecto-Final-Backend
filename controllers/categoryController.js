@@ -50,3 +50,37 @@ exports.update = async (req, res) => {
         return res.status(400).json({ message: `Error registrando usuario, ${err.message}` });
     }
 }
+
+//eliminar categoria
+exports.delete = async (req, res) => {
+    const { id } = req.body;
+
+    // Validar la entrada
+    if (!id) {
+        return res.status(400).json({ message: 'El ID de la categoría es requerido' });
+    }
+
+    try {
+        // Verificar si la categoría existe por ID
+        const existCategory = await Category.findById(id);
+        if (!existCategory) {
+            return res.status(404).json({ message: 'Categoría no encontrada' });
+        }
+
+        // Eliminar la categoría
+        await Category.findByIdAndDelete(id);
+
+        return res.status(200).json({ message: 'Categoría eliminada con éxito' });
+    } catch (err) {
+        return res.status(500).json({ message: `Error al eliminar la categoria` });
+    }
+};
+
+exports.getAll = async (req, res) => {
+    try {
+        const categories = await Category.find();
+        return res.status(200).json(categories);
+    } catch (err) {
+        return res.status(500).json({ message: `Error al obtener todas las categorias` });
+    }
+};
