@@ -6,6 +6,7 @@ const path = require('path');
 const authRoutes = require('./routes/auth');
 const productRoutes = require('./routes/product');
 const categoryRoutes = require('./routes/category');
+const coinsRoutes = require('./routes/coins');
 const cors = require('cors')
 
 const app = express();
@@ -35,6 +36,8 @@ mongoose.connect(MONGO_URI)
 app.use('/api/auth', authRoutes);
 app.use('/api/product', productRoutes);
 app.use('/api/category', categoryRoutes)
+app.use('/api/coins', coinsRoutes)
+
 
 app.get('/', (req, res) => {
   const htmlResponse = `
