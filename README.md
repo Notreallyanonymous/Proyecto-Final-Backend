@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # Módulo Web API
 
 ## Descripción del Proyecto
@@ -62,3 +63,7 @@ Modulo Web creado con react y consumiendo esta api. Visitalo aqui: [modulo web](
 ## 🔗 Links
 [![portfolio](https://img.shields.io/badge/my_portfolio-000?style=for-the-badge&logo=ko-fi&logoColor=white)](https://henryagustindev.vercel.app/)
 [![linkedin](https://img.shields.io/badge/linkedin-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/henry-agustin-/)
+=======
+# Proyecto-Final
+Proyecto-Final
+>>>>>>> d5e328d (Initial commit)
