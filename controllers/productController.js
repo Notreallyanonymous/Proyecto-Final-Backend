@@ -3,7 +3,7 @@ const Product = require("../models/Product");
 
 // crear nuevos productos
 exports.create = async (req, res) => {
-    const { name, category, price, stock } = req.body;
+    const { name, category, price, coin, stock, image } = req.body;
 
     try {
         const existingProduct = await Product.findOne({ name })
@@ -11,7 +11,7 @@ exports.create = async (req, res) => {
             return res.status(400).json({ errorMessage: 'Ya existe un producto con ese nombre' });
         }
 
-        const newProduct = new Product({ name, category, price, stock });
+        const newProduct = new Product({ name, category, price, coin, stock, image });
         await newProduct.save();
         return res.status(201).json({ message: 'Nuevo producto registrado', status: 201 });
     } catch (err) {
